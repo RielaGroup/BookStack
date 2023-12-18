@@ -16,6 +16,13 @@ return new class extends Migration
         Schema::table('cache', function (Blueprint $table) {
             $table->mediumText('value')->change();
         });
+
+        try {
+            DB::statement('SET SESSION sql_require_primary_key = 1');
+        } catch (\Exception $e) {
+            // Do nothing
+        }
+
     }
 
     /**
